@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller("/")
+@Controller
 public class PersonController {
     List<Person> persons = new ArrayList<>();
 

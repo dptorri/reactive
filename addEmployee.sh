@@ -1,11 +1,12 @@
 #!/bin/bash
 
-curl -X POST "http://localhost:8080/persons" \
+curl -X POST "http://localhost:8080/employees" \
 -H "Accept: application/json" \
 -H "Content-Type: application/json" \
 --data-binary @- <<DATA
 {
   "id": 1,
-  "name": "Joe"
+  "name": "Kate",
+  "jobPosition": "dev"
 }
 DATA

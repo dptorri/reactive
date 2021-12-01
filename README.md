@@ -44,21 +44,35 @@ chmod +x addPerson.sh
 
 #### 3. Add Mono controller with some creation examples
 ```
-    @Get("/monoString")
-    public Mono<String> monoString(){
-        return Mono.just("Mono strong");
-    }
+@Get("/monoString")
+public Mono<String> monoString(){
+    return Mono.just("Mono strong");
+}
 
-    @Get("/monoEmpty")
-    public Mono<String> monoEmpty(){
-        return Mono.empty();
-    }
+@Get("/monoEmpty")
+public Mono<String> monoEmpty(){
+    return Mono.empty();
+}
 
-    String helloWord() { return "Hello World"; }
+String helloWord() { return "Hello World"; }
 
-    @Get("/monoFromCallable")
-    public Mono<?> monoFromCallable(){
-        return Mono.fromCallable(this::helloWord);
-    }
+@Get("/monoFromCallable")
+public Mono<?> monoFromCallable(){
+    return Mono.fromCallable(this::helloWord);
+}
 
+```
+
+#### 4. Create a Employee Model and Controller 
+```
+curl -X POST "http://localhost:8080/employees" \
+-H "Accept: application/json" \
+-H "Content-Type: application/json" \
+--data-binary @- <<DATA
+{
+  "id": 1,
+  "name": "Kate",
+  "jobPosition": "dev"
+}
+DATA
 ```
