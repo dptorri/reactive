@@ -22,11 +22,22 @@ Person {
 }
 ```
 #### 2.2 Implement methods for adding and finding all persons by id
-````
+```
 POST /persons
 GET /persons/{id}
 ```
+#### 2.3 Add persons with bash script
+```
+-rw-r--r--   1 user  190 Dec  1 12:51 addPerson.sh
+chmod +x addPerson.sh   
+-rwxr-xr-x   1 user  190 Dec  1 12:51 addPerson.sh
 
+❯ sh addPerson.sh
+{"id":1,"name":"Kate"}%    
 
-
-
+❯ curl -X GET "http://localhost:8080/persons/1"
+{"id":1,"name":"Kate"}%           
+                                                     
+❯ curl -X GET "http://localhost:8080/persons/2"
+{"message":"Not Found", ...Page Not Found"}]}}%
+```
