@@ -41,3 +41,24 @@ chmod +x addPerson.sh
 ❯ curl -X GET "http://localhost:8080/persons/2"
 {"message":"Not Found", ...Page Not Found"}]}}%
 ```
+
+#### 3. Add Mono controller with some creation examples
+```
+    @Get("/monoString")
+    public Mono<String> monoString(){
+        return Mono.just("Mono strong");
+    }
+
+    @Get("/monoEmpty")
+    public Mono<String> monoEmpty(){
+        return Mono.empty();
+    }
+
+    String helloWord() { return "Hello World"; }
+
+    @Get("/monoFromCallable")
+    public Mono<?> monoFromCallable(){
+        return Mono.fromCallable(this::helloWord);
+    }
+
+```
