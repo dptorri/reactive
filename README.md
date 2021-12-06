@@ -76,3 +76,28 @@ curl -X POST "http://localhost:8080/employees" \
 }
 DATA
 ```
+#### 5. Create a Mono from Person and return to monoMockPerson and monoMockPerson2
+````
+Mono<Person> mockPerson() {
+    final Person person = new Person();
+    person.setName("Jane");
+    person.setId(3);
+    return Mono.just(person);
+}
+
+@Get("/monoMockPerson")
+public Mono<Person> monoMockPerson() {
+        return Mono.fromCallable(this::mockPerson).block();
+    }
+
+@Get("/monoMockPerson2")
+public Mono<Person> monoMockPerson2() {
+    return monoMockPerson();
+}
+//
+
+❯ curl http://localhost:8080/monon/monoMockPerson
+{"id":3,"name":"Jane"}%                                                           
+❯ curl http://localhost:8080/monon/monoMockPerson2
+{"id":3,"name":"Jane"}% 
+````

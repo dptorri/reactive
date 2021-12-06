@@ -4,8 +4,6 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import reactor.core.publisher.Mono;
 
-import java.util.function.Function;
-
 @Controller("/monon")
 public class Monon {
 
@@ -27,5 +25,21 @@ public class Monon {
         return Mono.fromCallable(this::helloWord);
     }
 
+    Mono<Person> mockPerson() {
+        final Person person = new Person();
+        person.setName("Jane");
+        person.setId(3);
+        return Mono.just(person);
+    }
+
+    @Get("/monoMockPerson")
+    public Mono<Person> monoMockPerson() {
+            return Mono.fromCallable(this::mockPerson).block();
+        }
+
+    @Get("/monoMockPerson2")
+    public Mono<Person> monoMockPerson2() {
+        return monoMockPerson();
+    }
 
 }
