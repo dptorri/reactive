@@ -3,6 +3,10 @@ package reactive;
 import javax.validation.constraints.NotBlank;
 
 public class Employee extends Person {
+    public Employee(Integer id, String name) {
+        super(id, name);
+    }
+
     public String getJobPosition() {
         return jobPosition;
     }

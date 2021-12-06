@@ -101,3 +101,7 @@ public Mono<Person> monoMockPerson2() {
 ❯ curl http://localhost:8080/monon/monoMockPerson2
 {"id":3,"name":"Jane"}% 
 ````
+
+#### 6 . Create Mockery class and generate person and personList mock data
+
+#### 6.1 Refactor Person Class to create Persons easily

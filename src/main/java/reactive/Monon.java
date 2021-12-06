@@ -7,7 +7,6 @@ import reactor.core.publisher.Mono;
 @Controller("/monon")
 public class Monon {
 
-
     @Get("/monoString")
     public Mono<String> monoString(){
         return Mono.just("Mono strong");
@@ -26,9 +25,7 @@ public class Monon {
     }
 
     Mono<Person> mockPerson() {
-        final Person person = new Person();
-        person.setName("Jane");
-        person.setId(3);
+        final Person person = new Person(4 ,"Jane");
         return Mono.just(person);
     }
 
