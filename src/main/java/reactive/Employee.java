@@ -1,5 +1,7 @@
 package reactive;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,11 +9,10 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class Employee extends Person {
+@Builder
+@AllArgsConstructor
+public class Employee {
+    Integer id;
+    String name;
     @NotBlank String jobPosition;
-
-    public Employee(Integer id, String name, String jobPosition) {
-        super(id, name);
-        this.jobPosition = jobPosition;
-    }
 }

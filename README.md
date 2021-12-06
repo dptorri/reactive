@@ -167,3 +167,27 @@ public class Employee extends Person {
     }
 }
 ```
+
+#### 6.4 Use @ Builder for creation of person instead of new keyword
+```
+// Note: @Superbuilder was avoided as it is a experimental feature in lombok
+
+*** THIS ===>
+
+employeeList.add(
+    new Employee(
+            person.getId(),
+            person.getName(),
+            person.getId() % 2 == 0 ? "developer" : "mamager")
+    );
+
+*** BECOMES THIS ===>
+
+employeeList.add(
+    Employee.builder()
+        .id(person.getId())
+        .name(person.getName())
+        .jobPosition(person.getId() % 2 == 0 ? "developer" : "mamager")
+        .build()
+);
+```

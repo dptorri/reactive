@@ -43,14 +43,14 @@ public class Mockery {
         if(tempPersons != null) {
             for(Person person: tempPersons) {
                 employeeList.add(
-                        new Employee(
-                                person.getId(),
-                                person.getName(),
-                                person.getId() % 2 == 0 ? "developer" : "mamager")
+                    Employee.builder()
+                        .id(person.getId())
+                        .name(person.getName())
+                        .jobPosition(person.getId() % 2 == 0 ? "developer" : "mamager")
+                        .build()
                 );
             }
         }
-
 
         return Mono.just(employeeList);
     }
