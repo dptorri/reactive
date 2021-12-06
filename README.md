@@ -135,5 +135,35 @@ public Mono<List<Employee>> getEmployeeList() {
     
     return Mono.just(employeeList);
 }
+```
 
+#### 6.3 Use Lombok in Person and Employee class
+```
+    compileOnly('org.projectlombok:lombok:1.18.22')
+    annotationProcessor('org.projectlombok:lombok:1.18.22')
+
+    testCompileOnly('org.projectlombok:lombok:1.18.22')
+    testAnnotationProcessor('org.projectlombok:lombok:1.18.22')
+
+**** PERSON ****
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
+public class Person {
+    Integer id;
+    String name;
+}
+
+**** EMPLOYEE ****
+@Getter
+@Setter
+public class Employee extends Person {
+    @NotBlank String jobPosition;
+
+    public Employee(Integer id, String name, String jobPosition) {
+        super(id, name);
+        this.jobPosition = jobPosition;
+    }
+}
 ```
