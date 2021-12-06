@@ -40,9 +40,17 @@ public class Mockery {
 
         final var tempPersons = this.mockPersons().block();
 
-        for(Person person: tempPersons) {
-            //TODO: Iterate and create employee list
+        if(tempPersons != null) {
+            for(Person person: tempPersons) {
+                employeeList.add(
+                        new Employee(
+                                person.getId(),
+                                person.getName(),
+                                person.getId() % 2 == 0 ? "developer" : "mamager")
+                );
+            }
         }
+
 
         return Mono.just(employeeList);
     }

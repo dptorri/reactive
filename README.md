@@ -105,3 +105,35 @@ public Mono<Person> monoMockPerson2() {
 #### 6 . Create Mockery class and generate person and personList mock data
 
 #### 6.1 Refactor Person Class to create Persons easily
+
+```
+    public Person(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+```
+
+#### 6.2 Use getPersonList result to create a respose to getEmployeeList
+```
+@Get("/employees")
+public Mono<List<Employee>> getEmployeeList() {
+    final List<Employee> employeeList = new ArrayList<>();
+    
+    final var tempPersons = this.mockPersons().block();
+    
+    if(tempPersons != null) {
+        for(Person person: tempPersons) {
+            employeeList.add(
+                    new Employee(
+                            person.getId(),
+                            person.getName(),
+                            person.getId() % 2 == 0 ? "developer" : "mamager")
+            );
+        }
+    }
+    
+    
+    return Mono.just(employeeList);
+}
+
+```
